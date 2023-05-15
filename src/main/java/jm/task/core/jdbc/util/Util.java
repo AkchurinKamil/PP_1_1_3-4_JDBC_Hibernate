@@ -10,7 +10,7 @@ public class Util {
     private static final String password = "KamilxXx1992";
 
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
         Connection connection = null;
 
         try {
@@ -18,12 +18,12 @@ public class Util {
             System.out.println();
 
 
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
 
         }
         return connection;
     }
 
-    }
+}
 
