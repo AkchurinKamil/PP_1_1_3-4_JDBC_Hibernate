@@ -12,18 +12,12 @@ public class Util {
 
     public static Connection getConnection() {
         Connection connection = null;
-
         try {
             connection = DriverManager.getConnection(URL, username, password);
-            System.out.println();
-
-
         } catch (SQLException e) {
             e.printStackTrace();
-
         }
         return connection;
     }
-
 }
 
