@@ -15,12 +15,13 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void createUsersTable() {
-        String sql = "CREATE TABLE `testingdata`.`users` (\n" +
-                "  `id` INT NOT NULL AUTO_INCREMENT,\n" +
-                "  `name` VARCHAR(45) NULL,\n" +
-                "  `lastName` VARCHAR(45) NULL,\n" +
-                "  `age` INT NULL,\n" +
-                "  PRIMARY KEY (`id`));";
+        String sql ="CREATE TABLE IF NOT EXISTS `testingdata`.`users`  (\n" +
+                "  `id` int NOT NULL AUTO_INCREMENT,\n" +
+                "  `name` varchar(45) DEFAULT NULL,\n" +
+                "  `lastName` varchar(45) DEFAULT NULL,\n" +
+                "  `age` int DEFAULT NULL,\n" +
+                "  PRIMARY KEY (`id`)";
+
         try (Connection connection = getConnection(); Statement statement = connection.createStatement()) {
             statement.execute(sql);
         } catch (SQLSyntaxErrorException ex) {
@@ -32,7 +33,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     @Override
     public void dropUsersTable() {
-        String sql = "drop table users ";
+        String sql = "DROP TABLE IF EXISTS users ";
         try (Connection connection = getConnection(); Statement statement = connection.createStatement()) {
             statement.execute(sql);
         } catch (SQLSyntaxErrorException e) {
